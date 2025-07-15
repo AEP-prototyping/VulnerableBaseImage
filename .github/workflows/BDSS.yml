@@ -47,8 +47,8 @@ jobs:
       run: which docker
 
     - name: Build Docker image
-      # run: docker build -t VulnerableBaseImage .
-      run: docker build -t VulnerableBaseImage --iidfile ./image.id .
+      # run: docker build -t vulnerablebaseimage .
+      run: docker build -t vulnerablebaseimage --iidfile ./image.id .
 
     - name: get iidfile
       run: cat ./image.id 
