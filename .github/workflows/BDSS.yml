@@ -22,7 +22,7 @@
 # 
 # change to force github action PR for 1-samshober-patch 2024-05-28 10.02 am 
 #
-name: bd+coverity+srm
+name: Black_Duck_Security_Scan
 on:
   push:
     branches:
