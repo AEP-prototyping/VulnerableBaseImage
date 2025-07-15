@@ -9,9 +9,9 @@ FROM vulnerables/web-dvwa
 COPY ./custom-config.php /var/www/html/config/config.inc.php
 
 # Optional: Install additional tools or dependencies
-RUN apt-get update && apt-get install -y nano
+# RUN apt-get update && apt-get install -y nano
 
 # Optional: Set environment variables or entrypoint
-ENV CUSTOM_ENV=example
+# ENV CUSTOM_ENV=example
 
 
