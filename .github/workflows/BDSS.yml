@@ -64,9 +64,9 @@ jobs:
         # updated resources to use blackducksca_* from blackduck_* 
         # blackduck_url: ${{ vars.BLACKDUCK_URL }}
         # blackduck_token: ${{ secrets.BLACKDUCK_API_TOKEN }}
-        blackduck_scan_full: true
+        # blackduck_scan_full: true
         # blackduck_scan_failure_severities: 'BLOCKER'
-        # blackducksca_scan_full: true
+        blackducksca_scan_full: true
         blackducksca_url: ${{ vars.BLACKDUCK_URL }}
         blackducksca_token: ${{ secrets.BLACKDUCK_API_TOKEN }}
         # blackducksca_scan_full: true
