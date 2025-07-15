@@ -87,7 +87,8 @@ jobs:
         DETECT_CODE_LOCATION_NAME: ${{ github.event.repository.name }}-${{ github.base_ref }}
       with:
         # updated resources to use blackducksca_* from blackduck_* 
-        blackducksca_url: ${{ vars.BLACKDUCK_URL }}
+        # blackducksca_url: ${{ vars.BLACKDUCK_URL }}
+        blackducksca_url: "https://sca.field-test.blackduck.com/"
         blackducksca_token: ${{ secrets.BLACKDUCK_API_TOKEN }}
         blackducksca_scan_full: false
         blackducksca_prComment_enabled: true
