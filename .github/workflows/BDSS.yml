@@ -63,6 +63,7 @@ jobs:
         DETECT_DOCKER_PATH: "/usr/bin/docker" 
         DETECT_DOCKER_IMAGE: "vulnerablebaseimage" 
         DETECT_TARGET_TYPE: IMAGE
+        DETECT_TOOLS_EXCLUDED: BINARY_SCAN
       with:
         # updated resources to use blackducksca_* from blackduck_* 
         # blackduck_url: ${{ vars.BLACKDUCK_URL }}
@@ -86,6 +87,10 @@ jobs:
         DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
         DETECT_PROJECT_VERSION_NAME: ${{ github.base_ref }}
         DETECT_CODE_LOCATION_NAME: ${{ github.event.repository.name }}-${{ github.base_ref }}
+        DETECT_DOCKER_PATH: "/usr/bin/docker" 
+        DETECT_DOCKER_IMAGE: "vulnerablebaseimage" 
+        DETECT_TARGET_TYPE: IMAGE
+        DETECT_TOOLS_EXCLUDED: BINARY_SCAN
       with:
         # updated resources to use blackducksca_* from blackduck_* 
         # blackducksca_url: ${{ vars.BLACKDUCK_URL }}
