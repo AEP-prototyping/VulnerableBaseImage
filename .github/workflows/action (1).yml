@@ -53,7 +53,6 @@ inputs:
 
 Jobs:
   Black Duck scan
-  # runs-on: ubuntu-latest   #ADDED BY SLS
   steps: 
     - name: Extract Docker Image
       id: ExtDocker
