@@ -2,6 +2,18 @@ Name: 'AEP Action: Black Duck Detect - Image Scan'
 description: 'Standard AEP Action Perform an SCA scan for your Project with Black Duck Detect'
 author: 'Mark Ritchey'
 
+on:
+  push:
+    branches:
+    - "*"
+    # branches: [ main, 1-SamShoberWork-patch, 2-Feature-Branch, 3-Release-Branch, 4-Dev, 5-Testing, 6-Production, StreamNameAAA ]
+  pull_request:
+    branches:
+    - "*"
+    # branches: [ main, 1-SamShoberWork-patch ]
+  workflow_dispatch:
+
+
 inputs:
   Blackduck_API_Token:
     description: Black Duck API Token for Application
