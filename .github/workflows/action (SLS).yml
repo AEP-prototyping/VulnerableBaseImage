@@ -1,6 +1,6 @@
 Name: 'AEP Action: Black Duck Detect - Image Scan'
-description: 'Standard AEP Action Perform an SCA scan for your Project with Black Duck Detect'
-author: 'Mark Ritchey'
+# description: 'Standard AEP Action Perform an SCA scan for your Project with Black Duck Detect'
+# author: 'Mark Ritchey'
 
 on:
   push:
