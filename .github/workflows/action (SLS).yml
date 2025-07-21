@@ -6,35 +6,35 @@ on:
   push:
     branches: [ main ]
 
-inputs:
-  Blackduck_API_Token:
-    description: Black Duck API Token for Application
-    required: true
-  GitHub_Token:
-    description: GitHub API Token for Application/Repo
-    required: true
-  Blackduck_URL: 
-    description: URL for Black Duck Hub
-    required: false
-    default: 'https://blackduck.aepsc.com'
-  Detect_Full_Scan_Mode:
-    description: 'Perform a Full/INTELLIGENT Scan within Black Duck (True/False)'
-    required: false
-    default: true
-  Detect_Code_Loc_Name:
-    description: 'The Name of the Scan ID/Name within Black Duck'
-    required: false
-    default: '${{github.event.repository.name}}-${{github.ref_name}}-${{ github.run_number }}'
-  Detect_Excluded_Directories:
-    description: 'The Name of the directories to exclude from your Black Duck Scan'
-    required: false
-    default: 'idir'
-  Image_Location:
-    description: 'The Docker Image Repository and location'
-    required: true
-  Image_ID: 
-    description: 'The ID/Name of the Docker Image'
-    required: true
+#inputs:
+#  Blackduck_API_Token:
+#    description: Black Duck API Token for Application
+#    required: true
+#  GitHub_Token:
+#    description: GitHub API Token for Application/Repo
+#    required: true
+#  Blackduck_URL: 
+#    description: URL for Black Duck Hub
+#    required: false
+#    default: 'https://blackduck.aepsc.com'
+#  Detect_Full_Scan_Mode:
+#    description: 'Perform a Full/INTELLIGENT Scan within Black Duck (True/False)'
+#    required: false
+#    default: true
+#  Detect_Code_Loc_Name:
+#    description: 'The Name of the Scan ID/Name within Black Duck'
+#    required: false
+#    default: '${{github.event.repository.name}}-${{github.ref_name}}-${{ github.run_number }}'
+#  Detect_Excluded_Directories:
+#    description: 'The Name of the directories to exclude from your Black Duck Scan'
+#    required: false
+#    default: 'idir'
+#  Image_Location:
+#    description: 'The Docker Image Repository and location'
+#    required: true
+#  Image_ID: 
+#    description: 'The ID/Name of the Docker Image'
+#    required: true
 
 #runs:
 # ----------- Composite required for Action Definition-------------
@@ -60,17 +60,21 @@ jobs:
         NODE_EXTRA_CA_CERTS: ${{env.AEP_CERT}}
         PATH: '${{env.PATH}}:${{env.JAVA_HOME}}'
       with:
-        project_source_excludes: '${{inputs.Detect_Excluded_Directories}}'
-        blackducksca_url: '${{inputs.Blackduck_URL}}'
-        blackducksca_token: ${{ inputs.Blackduck_API_Token }}
-        blackducksca_scan_full: ${{inputs.Detect_Full_Scan_Mode}}
-        github_token: ${{ inputs.GitHub_Token }}
+        #project_source_excludes: '${{inputs.Detect_Excluded_Directories}}'
+        #blackducksca_url: '${{inputs.Blackduck_URL}}'
+        #blackducksca_token: ${{ inputs.Blackduck_API_Token }}
+        #blackducksca_scan_full: ${{inputs.Detect_Full_Scan_Mode}}
+        project_source_excludes:  'idir'
+        blackducksca_url: '${{vars.Blackduck_URL}}'
+        blackducksca_token: ${{ secrets.Blackduck_API_Token }}
+        blackducksca_scan_full: true
+        github_token: ${{ secrets.GitHub_Token }}
         detect_args: |
           --detect.code.location.name="${{github.event.repository.name}}-${{github.ref_name}}-${{ github.run_number }}"
           --detect.docker.path="/appl/ghrunner/bin/docker" 
           --detect.docker.image="${{inputs.Image_Location}}:${{inputs.Image_ID}}" 
           --detect.project.name="${{github.event.repository.name}}" 
-          --detect.project.version.name="${{github.ref_name}}"
+          --detect.project.version.name="${{github.ref_name}} - 3.32PM"
           --detect.blackduck.signature.scanner.memory=8192
           --detect.tools.excluded="BINARY_SCAN"
           --detect.cleanup=false
