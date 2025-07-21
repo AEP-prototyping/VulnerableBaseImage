@@ -43,8 +43,7 @@ inputs:
 jobs:
   build:
     runs-on: ubuntu-latest  
-    
-  steps: 
+    steps: 
     - name: Extract Docker Image
       id: ExtDocker
       run: |
