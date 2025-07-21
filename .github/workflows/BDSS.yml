@@ -64,11 +64,12 @@ jobs:
       uses: blackduck-inc/black-duck-security-scan@v2.0.0
       env:
         DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
-        DETECT_PROJECT_VERSION_NAME: $TIMESTAMP-${{ github.ref_name }}
+        DETECT_PROJECT_VERSION_NAME: ${{ TIMESTAMP }}-${{ github.ref_name }}
         DETECT_CODE_LOCATION_NAME: ${{ github.event.repository.name }}-${{ github.ref_name }}
         DETECT_DOCKER_PATH: "/usr/bin/docker" 
         DETECT_DOCKER_IMAGE: "vulnerablebaseimage" 
         DETECT_TARGET_TYPE: IMAGE
+        DETECT_TOOLS_EXCLUDED: "BINARY_SCAN"
       with:
         # updated resources to use blackducksca_* from blackduck_* 
         # blackduck_url: ${{ vars.BLACKDUCK_URL }}
