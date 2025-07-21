@@ -36,10 +36,14 @@ inputs:
     description: 'The ID/Name of the Docker Image'
     required: true
 
-runs:
+#runs:
 # ----------- Composite required for Action Definition-------------
-  using: 'composite'
-  
+  #using: 'composite'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  
+    
   steps: 
     - name: Extract Docker Image
       id: ExtDocker
