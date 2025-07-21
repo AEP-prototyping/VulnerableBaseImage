@@ -6,13 +6,15 @@ inputs:
   Blackduck_API_Token:
     description: Black Duck API Token for Application
     required: true
+    default: ${{ secrets.BLACKDUCKSCA_TOKEN }}
   GitHub_Token:
     description: GitHub API Token for Application/Repo
     required: true
   Blackduck_URL: 
     description: URL for Black Duck Hub
     required: false
-    default: 'https://blackduck.aepsc.com'
+    #default: ${{ 'https://sca.field-test.blackduck.com/' }}
+    default: vars.BLACKDUCKSCA_URL
   Detect_Full_Scan_Mode:
     description: 'Perform a Full/INTELLIGENT Scan within Black Duck (True/False)'
     required: false
@@ -47,22 +49,24 @@ runs:
         fi
       shell: bash
       
-    - name: Run Synopsys Black Duck Detect
+    - name: Run Black Duck Detect
       uses: blackduck-inc/black-duck-security-scan@v2
-      env:
-        NODE_EXTRA_CA_CERTS: ${{env.AEP_CERT}}
-        PATH: '${{env.PATH}}:${{env.JAVA_HOME}}'
+      #env:
+        #NODE_EXTRA_CA_CERTS: ${{env.AEP_CERT}}
+        #PATH: '${{env.PATH}}:${{env.JAVA_HOME}}'
       with:
         project_source_excludes: '${{inputs.Detect_Excluded_Directories}}'
-        blackducksca_url: '${{inputs.Blackduck_URL}}'
-        blackducksca_token: ${{ inputs.Blackduck_API_Token }}
+        blackducksca_url: '${{vars.BlackduckSCA_URL}}'
+        #blackducksca_url: '${{inputs.Blackduck_URL}}'
+        blackducksca_token: ${{ secrets.Blackduck_API_Token }}
+        #blackducksca_token: ${{ inputs.Blackduck_API_Token }}
         blackducksca_scan_full: ${{inputs.Detect_Full_Scan_Mode}}
         github_token: ${{ inputs.GitHub_Token }}
         detect_args: |
           --detect.code.location.name="${{github.event.repository.name}}-${{github.ref_name}}-${{ github.run_number }}"
           --detect.docker.path="/appl/ghrunner/bin/docker" 
           --detect.docker.image="${{inputs.Image_Location}}:${{inputs.Image_ID}}" 
-          --detect.project.name="${{github.event.repository.name}}" 
+          --detect.project.name="SLS-AEPyml-${{github.event.repository.name}}" 
           --detect.project.version.name="${{github.ref_name}}"
           --detect.blackduck.signature.scanner.memory=8192
           --detect.tools.excluded="BINARY_SCAN"
