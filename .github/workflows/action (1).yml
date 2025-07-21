@@ -2,7 +2,7 @@ Name: 'AEP Action: Black Duck Detect - Image Scan'
 description: 'Standard AEP Action Perform an SCA scan for your Project with Black Duck Detect'
 author: 'Mark Ritchey'
 
-on:
+on:     # BEGIN ADDED BY SLS
   push:
     branches:
     - "*"
@@ -12,13 +12,13 @@ on:
     - "*"
     # branches: [ main, 1-SamShoberWork-patch ]
   workflow_dispatch:
-
+   #END ADDED BY SLS
 
 inputs:
   Blackduck_API_Token:
     description: Black Duck API Token for Application
     required: true
-    default: ${{ secrets.BLACKDUCKSCA_TOKEN }}
+    default: ${{ secrets.BLACKDUCKSCA_TOKEN }}    #ADDED BY SLS
   GitHub_Token:
     description: GitHub API Token for Application/Repo
     required: true
@@ -26,7 +26,7 @@ inputs:
     description: URL for Black Duck Hub
     required: false
     #default: ${{ 'https://sca.field-test.blackduck.com/' }}
-    default: vars.BLACKDUCKSCA_URL
+    default: vars.BLACKDUCKSCA_URL    #ADDED BY SLS
   Detect_Full_Scan_Mode:
     description: 'Perform a Full/INTELLIGENT Scan within Black Duck (True/False)'
     required: false
@@ -62,6 +62,7 @@ runs:
       shell: bash
       
     - name: Run Black Duck Detect
+      runs-on: ubuntu-latest   #ADDED BY SLS
       uses: blackduck-inc/black-duck-security-scan@v2
       #env:
         #NODE_EXTRA_CA_CERTS: ${{env.AEP_CERT}}
