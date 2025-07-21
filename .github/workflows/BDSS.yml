@@ -86,8 +86,8 @@ jobs:
         # --detect.target.type=IMAGE  needto be added for a docker scan 
         detect_args: |
           --detect.code.location.name="${{github.event.repository.name}}-${{github.ref_name}}-${{ github.run_number }}"
-          --detect.docker.path="/appl/ghrunner/bin/docker" 
-          --detect.docker.image="${{inputs.Image_Location}}:${{inputs.Image_ID}}" 
+          --detect.docker.path="/usr/bin/docker" 
+          --detect.docker.image="vulnerablebaseimage" 
           --detect.project.name="SLS-AEPyml-${{github.event.repository.name}}" 
           --detect.project.version.name="${{github.ref_name}}"
           --detect.blackduck.signature.scanner.memory=8192
