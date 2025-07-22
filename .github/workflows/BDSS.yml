@@ -92,7 +92,7 @@ jobs:
           --detect.docker.path="/usr/bin/docker" 
           --detect.docker.image="vulnerablebaseimage" 
           --detect.project.name="SLS-AEPyml-${{github.event.repository.name}}" 
-          --detect.project.version.name="${{github.ref_name}} -MERGE- $TIMESTAMP"
+          --detect.project.version.name="${{github.ref_name}} -MERGE-""$TIMESTAMP"
           --detect.blackduck.signature.scanner.memory=8192
           --detect.tools="ALL","IAC_SCAN","CONTAINER_SCAN"
           --detect.tools.excluded="BINARY_SCAN"
@@ -132,7 +132,7 @@ jobs:
           --detect.docker.path="/usr/bin/docker" 
           --detect.docker.image="vulnerablebaseimage" 
           --detect.project.name="SLS-AEPyml-${{github.event.repository.name}}" 
-          --detect.project.version.name="${{github.ref_name}} -PR- $TIMESTAMP"
+          --detect.project.version.name="${{github.ref_name}} -PR-"$TIMESTAMP""
           --detect.blackduck.signature.scanner.memory=8192
           --detect.tools="ALL","IAC_SCAN","CONTAINER_SCAN"
           --detect.tools.excluded="BINARY_SCAN"
