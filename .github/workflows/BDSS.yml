@@ -126,7 +126,7 @@ jobs:
           --detect.docker.path="/usr/bin/docker" 
           --detect.docker.image="vulnerablebaseimage" 
           --detect.project.name="SLS-AEPyml-${{github.event.repository.name}}" 
-          --detect.project.version.name="${{github.ref_name}} - "datetime.now().isoformat()
+          --detect.project.version.name="${{github.ref_name}} - $TIMESTAMP"
           --detect.blackduck.signature.scanner.memory=8192
           --detect.tools="ALL","IAC_SCAN","CONTAINER_SCAN"
           --detect.tools.excluded="BINARY_SCAN"
