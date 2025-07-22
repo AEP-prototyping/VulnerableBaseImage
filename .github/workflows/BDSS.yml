@@ -91,6 +91,7 @@ jobs:
           --detect.project.name="SLS-AEPyml-${{github.event.repository.name}}" 
           --detect.project.version.name="${{github.ref_name}} - "datetime.now().isoformat()
           --detect.blackduck.signature.scanner.memory=8192
+          --detect.tools="ALL","IAC_SCAN","CONTAINER_SCAN"
           --detect.tools.excluded="BINARY_SCAN"
           --detect.excluded.directories='idir'
           --detect.cleanup=false
