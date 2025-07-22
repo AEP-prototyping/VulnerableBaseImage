@@ -89,9 +89,10 @@ jobs:
           --detect.docker.path="/usr/bin/docker" 
           --detect.docker.image="vulnerablebaseimage" 
           --detect.project.name="SLS-AEPyml-${{github.event.repository.name}}" 
-          --detect.project.version.name="${{github.ref_name}} - "$TIMESTAMP
+          --detect.project.version.name="${{github.ref_name}} - "<% moment().format() %>
           --detect.blackduck.signature.scanner.memory=8192
           --detect.tools.excluded="BINARY_SCAN"
+          --detect.excluded.directories='idir'
           --detect.cleanup=false
        
     - name: Black Duck PR Scan
