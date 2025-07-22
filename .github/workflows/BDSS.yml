@@ -22,15 +22,15 @@
 # 
 # change to force github action PR for 1-samshober-patch 2024-05-28 10.02 am 
 #
-name: Black_Duck_Security_Scan
+name: Black_Duck_Security_Scan_Action
 on:
   push:
-    branches:
-    - "*"
+    branches: [ main, master, develop, stage, release ]
+    #- "*"
     # branches: [ main, 1-SamShoberWork-patch, 2-Feature-Branch, 3-Release-Branch, 4-Dev, 5-Testing, 6-Production, StreamNameAAA ]
   pull_request:
-    branches:
-    - "*"
+    branches: [ main, master, develop, stage, release ]
+    #- "*"
     # branches: [ main, 1-SamShoberWork-patch ]
   workflow_dispatch:
 jobs:
@@ -92,7 +92,7 @@ jobs:
           --detect.docker.path="/usr/bin/docker" 
           --detect.docker.image="vulnerablebaseimage" 
           --detect.project.name="SLS-AEPyml-${{github.event.repository.name}}" 
-          --detect.project.version.name="${{github.ref_name}} - $TIMESTAMP"
+          --detect.project.version.name="${{github.ref_name}} -MERGE- $TIMESTAMP"
           --detect.blackduck.signature.scanner.memory=8192
           --detect.tools="ALL","IAC_SCAN","CONTAINER_SCAN"
           --detect.tools.excluded="BINARY_SCAN"
@@ -132,7 +132,7 @@ jobs:
           --detect.docker.path="/usr/bin/docker" 
           --detect.docker.image="vulnerablebaseimage" 
           --detect.project.name="SLS-AEPyml-${{github.event.repository.name}}" 
-          --detect.project.version.name="${{github.ref_name}} - "datetime.now().isoformat()
+          --detect.project.version.name="${{github.ref_name}} -PR- $TIMESTAMP"
           --detect.blackduck.signature.scanner.memory=8192
           --detect.tools="ALL","IAC_SCAN","CONTAINER_SCAN"
           --detect.tools.excluded="BINARY_SCAN"
@@ -145,3 +145,6 @@ jobs:
 #      with:
 #        name: bridge-logs
 #        path: ${{ github.workspace }}/.bridge
+
+    - name: Use Timestamp
+      run: echo "Timestamp is $TIMESTAMP" # Access the timestamp in another step
